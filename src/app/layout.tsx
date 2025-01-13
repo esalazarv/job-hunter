@@ -27,14 +27,14 @@ export default function RootLayout({
               <h1 className="text-lg font-semibold">Dashboard</h1>
               <div className="flex items-center gap-4">
                 <button className="text-sm text-muted-foreground hover:text-foreground">
-                  <Icon name="Bell" className="h-4 w-4" />
+                  <Icon name="Bell" className="h-5 w-5" />
                 </button>
                 <button className="text-sm text-muted-foreground hover:text-foreground">
-                  <Icon name="Gear" className="h-4 w-4" />
+                  <Icon name="Gear" className="h-5 w-5" />
                 </button>
-                <div className="h-4 w-px bg-border/50" />
+                <div className="h-5 w-px bg-border/50" />
                 <button className="text-sm text-muted-foreground hover:text-foreground">
-                  <Icon name="SignOut" className="h-4 w-4" />
+                  <Icon name="SignOut" className="h-5 w-5" />
                 </button>
               </div>
             </div>
