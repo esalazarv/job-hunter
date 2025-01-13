@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -74,7 +74,9 @@ export function Sidenav() {
                     name={item.icon as any}
                     className={cn(
                       "h-5 w-5",
-                      isActive ? "text-primary-foreground" : "text-muted-foreground group-hover:text-foreground"
+                      isActive
+                        ? "text-primary-foreground"
+                        : "text-muted-foreground group-hover:text-foreground"
                     )}
                   />
                   {item.name}
@@ -88,11 +90,13 @@ export function Sidenav() {
         <div className="shrink-0 border-t border-border p-3">
           <div className="flex items-center gap-3 rounded-md bg-muted p-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary">
-              <span className="text-sm font-medium text-primary-foreground">E</span>
+              <span className="text-sm font-medium text-primary-foreground">
+                E
+              </span>
             </div>
             <div className="flex-1 text-sm">
               <p className="font-medium text-foreground">Eduardo</p>
-              <p className="text-xs text-muted-foreground">eduardo@meetjules.com</p>
+              <p className="text-xs text-muted-foreground">eduardo@email.com</p>
             </div>
           </div>
         </div>

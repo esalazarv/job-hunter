@@ -32,6 +32,10 @@ export default function RootLayout({
                 <button className="text-sm text-muted-foreground hover:text-foreground">
                   <Icon name="Gear" className="h-4 w-4" />
                 </button>
+                <div className="h-4 w-px bg-border/50" />
+                <button className="text-sm text-muted-foreground hover:text-foreground">
+                  <Icon name="SignOut" className="h-4 w-4" />
+                </button>
               </div>
             </div>
             <main className="flex-1 overflow-y-auto p-6">
