@@ -12,6 +12,7 @@ export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const message = searchParams.get("message");
+  const redirectTo = searchParams.get("redirectTo") || "/";
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -34,8 +35,8 @@ export default function LoginPage() {
 
       if (signInError) throw signInError;
 
-      // Redirect to dashboard on success
-      router.push("/");
+      // Redirect to the original URL or home
+      router.push(redirectTo);
       router.refresh();
     } catch (err) {
       setError(
