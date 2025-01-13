@@ -151,7 +151,7 @@ export default function SignUpPage() {
           </div>
 
           <div className="text-center text-sm">
-            <span className="text-muted-foreground">Already have an account?</span>{' '}
+            <span className="text-muted-foreground">Already have an account?</span>{" "}
             <Link
               href="/auth/login"
               className="font-medium text-primary hover:text-primary/90"

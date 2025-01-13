@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
 import { Icon } from "@/components/ui/icon";
+import { PasswordInput } from "@/components/ui/password-input";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -94,25 +95,13 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-card-foreground"
-              >
-                Password
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Icon name="Lock" className="text-muted-foreground" />
-                </div>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  className="pl-10 mt-1 block w-full px-3 py-2 bg-background border border-input rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                />
-              </div>
+              <PasswordInput
+                id="password"
+                name="password"
+                label="Password"
+                autoComplete="current-password"
+                required
+              />
             </div>
           </div>
 
@@ -134,7 +123,7 @@ export default function LoginPage() {
 
             <div className="text-sm">
               <Link
-                href="/auth/forgot-password"
+                href="/auth/reset-password"
                 className="font-medium text-primary hover:text-primary/90"
               >
                 Forgot your password?
