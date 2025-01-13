@@ -2,19 +2,46 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { createClient } from "@/lib/supabase/client";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const message = searchParams.get("message");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsLoading(true);
+    setError(null);
 
-    // TODO: Implement login logic
-    setTimeout(() => {
+    const formData = new FormData(event.currentTarget);
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+
+    try {
+      const supabase = createClient();
+
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (signInError) throw signInError;
+
+      // Redirect to dashboard on success
+      router.push("/");
+      router.refresh();
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "An error occurred during sign in"
+      );
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   }
 
   return (
@@ -28,6 +55,19 @@ export default function LoginPage() {
             Please sign in to your account
           </p>
         </div>
+
+        {message && (
+          <div className="bg-primary/10 text-primary p-3 rounded-md text-sm">
+            {message}
+          </div>
+        )}
+
+        {error && (
+          <div className="bg-destructive/10 text-destructive p-3 rounded-md text-sm">
+            {error}
+          </div>
+        )}
+
         <form className="mt-8 space-y-6" onSubmit={onSubmit}>
           <div className="space-y-4">
             <div>
@@ -46,6 +86,7 @@ export default function LoginPage() {
                 className="mt-1 block w-full px-3 py-2 bg-background border border-input rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
               />
             </div>
+
             <div>
               <label
                 htmlFor="password"
