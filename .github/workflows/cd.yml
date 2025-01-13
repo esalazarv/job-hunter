@@ -33,5 +33,5 @@ jobs:
       - name: Generate Supabase types
         run: npx supabase@2.1.1 gen types typescript --linked --schema public > supabase/functions/_common/types/database.ts
 
-      - name: Deploy Supabase functions
-        run: npx supabase@2.1.1 functions deploy --project-ref $SUPABASE_PROJECT_ID
+      # - name: Deploy Supabase functions
+      #   run: npx supabase@2.1.1 functions deploy --project-ref $SUPABASE_PROJECT_ID
