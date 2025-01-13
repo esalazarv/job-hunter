@@ -1,3 +1,5 @@
+'use client';
+
 import { ElementType } from "react";
 import * as PhosphorIcons from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
@@ -9,7 +11,7 @@ export interface IconProps {
   weight?: "thin" | "light" | "regular" | "bold" | "fill" | "duotone";
 }
 
-export function Icon({ name, className, size = 20, weight = "regular" }: IconProps) {
+export function Icon({ name, className, size = 20, weight = "duotone" }: IconProps) {
   const IconComponent = PhosphorIcons[name] as ElementType;
 
   if (!IconComponent) {

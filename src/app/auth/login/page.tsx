@@ -27,7 +27,7 @@ export default function LoginPage() {
 
     try {
       const supabase = createClient();
-
+      
       const { error: signInError } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -35,13 +35,10 @@ export default function LoginPage() {
 
       if (signInError) throw signInError;
 
-      // Redirect to the original URL or home
       router.push(redirectTo);
       router.refresh();
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "An error occurred during sign in"
-      );
+      setError(err instanceof Error ? err.message : "An error occurred during sign in");
     } finally {
       setIsLoading(false);
     }
@@ -80,8 +77,8 @@ export default function LoginPage() {
               >
                 Email address
               </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <div className="relative mt-1">
+                <div className="absolute inset-y-0 left-0 pl-3 inline-flex items-center pointer-events-none">
                   <Icon name="Envelope" className="text-muted-foreground" />
                 </div>
                 <input
@@ -90,7 +87,7 @@ export default function LoginPage() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="pl-10 mt-1 block w-full px-3 py-2 bg-background border border-input rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="block w-full rounded-md border border-input bg-background py-2 pl-10 pr-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                 />
               </div>
             </div>
@@ -153,9 +150,7 @@ export default function LoginPage() {
           </div>
 
           <div className="text-center text-sm">
-            <span className="text-muted-foreground">
-              Don't have an account?
-            </span>{" "}
+            <span className="text-muted-foreground">Don't have an account?</span>{" "}
             <Link
               href="/auth/signup"
               className="font-medium text-primary hover:text-primary/90"
