@@ -36,36 +36,24 @@ export async function middleware(request: NextRequest) {
 
   const { data: { session } } = await supabase.auth.getSession()
 
-  // Check if the request is for an auth page
-  const isAuthPage = request.nextUrl.pathname.startsWith('/auth/')
-
-  // If user is not signed in and trying to access a protected route
-  if (!session && !isAuthPage) {
-    const redirectUrl = new URL('/auth/login', request.url)
-    // Add the original URL as a query parameter so we can redirect back after login
-    redirectUrl.searchParams.set('redirectTo', request.nextUrl.pathname)
-    return NextResponse.redirect(redirectUrl)
+  // If user is not signed in and the current path is not /auth/* redirect the user to /auth/login
+  if (!session && !request.nextUrl.pathname.startsWith("/auth")) {
+    return NextResponse.redirect(new URL("/auth/login", request.url))
   }
 
-  // If user is signed in and trying to access an auth page
-  if (session && isAuthPage) {
-    return NextResponse.redirect(new URL('/', request.url))
+  // If user is signed in and the current path is /auth/* redirect the user to /dashboard
+  if (session && request.nextUrl.pathname.startsWith("/auth")) {
+    return NextResponse.redirect(new URL("/dashboard", request.url))
+  }
+
+  // If user is signed in and at root path, redirect to dashboard
+  if (session && request.nextUrl.pathname === "/") {
+    return NextResponse.redirect(new URL("/dashboard", request.url))
   }
 
   return response
 }
 
-// Specify which routes should be protected
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - public folder
-     * - auth routes
-     */
-    '/((?!_next/static|_next/image|favicon.ico|public|auth).*)',
-  ],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 }

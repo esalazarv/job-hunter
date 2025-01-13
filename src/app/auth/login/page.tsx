@@ -45,121 +45,119 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="w-full max-w-md space-y-8 p-8 bg-card rounded-xl shadow-2xl">
-        <div className="text-center">
-          <h2 className="mt-6 text-3xl font-bold text-card-foreground">
-            Welcome back
-          </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Please sign in to your account
-          </p>
+    <>
+      <div className="text-center">
+        <h2 className="mt-6 text-3xl font-bold text-card-foreground">
+          Welcome back
+        </h2>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Please sign in to your account
+        </p>
+      </div>
+
+      {message && (
+        <div className="bg-primary/10 text-primary p-3 rounded-md text-sm">
+          {message}
         </div>
+      )}
 
-        {message && (
-          <div className="bg-primary/10 text-primary p-3 rounded-md text-sm">
-            {message}
-          </div>
-        )}
+      {error && (
+        <div className="bg-destructive/10 text-destructive p-3 rounded-md text-sm">
+          {error}
+        </div>
+      )}
 
-        {error && (
-          <div className="bg-destructive/10 text-destructive p-3 rounded-md text-sm">
-            {error}
-          </div>
-        )}
-
-        <form className="mt-8 space-y-6" onSubmit={onSubmit}>
-          <div className="space-y-4">
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-card-foreground"
-              >
-                Email address
-              </label>
-              <div className="relative mt-1">
-                <div className="absolute inset-y-0 left-0 pl-3 inline-flex items-center pointer-events-none">
-                  <Icon name="Envelope" className="text-muted-foreground" />
-                </div>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="block w-full rounded-md border border-input bg-background py-2 pl-10 pr-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                />
+      <form className="mt-8 space-y-6" onSubmit={onSubmit}>
+        <div className="space-y-4">
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-card-foreground"
+            >
+              Email address
+            </label>
+            <div className="relative mt-1">
+              <div className="absolute inset-y-0 left-0 pl-3 inline-flex items-center pointer-events-none">
+                <Icon name="Envelope" className="text-muted-foreground" />
               </div>
-            </div>
-
-            <div>
-              <PasswordInput
-                id="password"
-                name="password"
-                label="Password"
-                autoComplete="current-password"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
               <input
-                id="remember-me"
-                name="remember-me"
-                type="checkbox"
-                className="h-4 w-4 text-primary focus:ring-primary border-input rounded"
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                className="block w-full rounded-md border border-input bg-background py-2 pl-10 pr-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
               />
-              <label
-                htmlFor="remember-me"
-                className="ml-2 block text-sm text-card-foreground"
-              >
-                Remember me
-              </label>
-            </div>
-
-            <div className="text-sm">
-              <Link
-                href="/auth/reset-password"
-                className="font-medium text-primary hover:text-primary/90"
-              >
-                Forgot your password?
-              </Link>
             </div>
           </div>
 
           <div>
-            <button
-              type="submit"
-              disabled={isLoading}
-              className={cn(
-                "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-primary-foreground bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary",
-                isLoading && "opacity-50 cursor-not-allowed"
-              )}
+            <PasswordInput
+              id="password"
+              name="password"
+              label="Password"
+              autoComplete="current-password"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <input
+              id="remember-me"
+              name="remember-me"
+              type="checkbox"
+              className="h-4 w-4 text-primary focus:ring-primary border-input rounded"
+            />
+            <label
+              htmlFor="remember-me"
+              className="ml-2 block text-sm text-card-foreground"
             >
-              {isLoading ? (
-                <div className="flex items-center justify-center">
-                  <Icon name="CircleNotch" className="animate-spin mr-2" />
-                  Signing in...
-                </div>
-              ) : (
-                "Sign in"
-              )}
-            </button>
+              Remember me
+            </label>
           </div>
 
-          <div className="text-center text-sm">
-            <span className="text-muted-foreground">Don't have an account?</span>{" "}
+          <div className="text-sm">
             <Link
-              href="/auth/signup"
+              href="/auth/reset-password"
               className="font-medium text-primary hover:text-primary/90"
             >
-              Sign up
+              Forgot your password?
             </Link>
           </div>
-        </form>
-      </div>
-    </div>
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            disabled={isLoading}
+            className={cn(
+              "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-primary-foreground bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary",
+              isLoading && "opacity-50 cursor-not-allowed"
+            )}
+          >
+            {isLoading ? (
+              <div className="flex items-center justify-center">
+                <Icon name="CircleNotch" className="animate-spin mr-2" />
+                Signing in...
+              </div>
+            ) : (
+              "Sign in"
+            )}
+          </button>
+        </div>
+
+        <div className="text-center text-sm">
+          <span className="text-muted-foreground">Don't have an account?</span>{" "}
+          <Link
+            href="/auth/signup"
+            className="font-medium text-primary hover:text-primary/90"
+          >
+            Sign up
+          </Link>
+        </div>
+      </form>
+    </>
   );
 }
