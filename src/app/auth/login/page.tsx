@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
+import { useState } from "react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +31,10 @@ export default function LoginPage() {
         <form className="mt-8 space-y-6" onSubmit={onSubmit}>
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-card-foreground">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-card-foreground"
+              >
                 Email address
               </label>
               <input
@@ -44,7 +47,10 @@ export default function LoginPage() {
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-card-foreground">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-card-foreground"
+              >
                 Password
               </label>
               <input
@@ -66,7 +72,10 @@ export default function LoginPage() {
                 type="checkbox"
                 className="h-4 w-4 text-primary focus:ring-primary border-input rounded"
               />
-              <label htmlFor="remember-me" className="ml-2 block text-sm text-card-foreground">
+              <label
+                htmlFor="remember-me"
+                className="ml-2 block text-sm text-card-foreground"
+              >
                 Remember me
               </label>
             </div>
@@ -95,9 +104,11 @@ export default function LoginPage() {
           </div>
 
           <div className="text-center text-sm">
-            <span className="text-muted-foreground">Don't have an account?</span>{' '}
+            <span className="text-muted-foreground">
+              Don't have an account?
+            </span>{" "}
             <Link
-              href="/auth/register"
+              href="/auth/signup"
               className="font-medium text-primary hover:text-primary/90"
             >
               Sign up
